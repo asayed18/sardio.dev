@@ -161,3 +161,6 @@
     padding-bottom:180px;
   }
 }
+@media (min-width:761px) and (min-height:900px){
+  #contact{padding-top:clamp(380px,38vh,520px)}
+}
