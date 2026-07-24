@@ -134,3 +134,16 @@
   -webkit-mask-image:conic-gradient(from 0deg at 50% 0,transparent 0 132deg,rgba(0,0,0,.08) 140deg,rgba(0,0,0,.48) 150deg,#000 158deg 202deg,rgba(0,0,0,.48) 210deg,rgba(0,0,0,.08) 220deg,transparent 228deg 360deg);
   mask-image:conic-gradient(from 0deg at 50% 0,transparent 0 132deg,rgba(0,0,0,.08) 140deg,rgba(0,0,0,.48) 150deg,#000 158deg 202deg,rgba(0,0,0,.48) 210deg,rgba(0,0,0,.08) 220deg,transparent 228deg 360deg);
 }
+
+/* Give the fixed-width composition more presence on large displays. */
+@media (min-width:1400px){
+  .v13-menu{font-size:12px}
+  .v13-title{font-size:74px}
+  .v13-body{max-width:500px;font-size:17px}
+  .v13-primary,.v13-secondary{font-size:13px}
+  .v13-section h2{font-size:82px}
+  .v13-lead{font-size:20px}
+  .v13-about-intro p{font-size:27px}
+  .v13-about-detail p{font-size:16px}
+  .v13-contact-compact .v13-contact-link strong{font-size:34px}
+}
