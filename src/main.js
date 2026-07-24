@@ -170,7 +170,7 @@
     const delta = Math.min(40, time - lastTime);
     lastTime = time;
     if (!dragging) {
-      phase += delta * .00028;
+      phase += delta * .00018;
       const target = swingCenter + Math.sin(phase) * swingAmplitude;
       angle += (target - angle) * .035;
       pull += (0 - pull) * .08;

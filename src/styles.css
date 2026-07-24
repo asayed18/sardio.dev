@@ -125,3 +125,12 @@
 .v13-contact-compact .v13-contact-link strong{
   align-self:start;
 }
+
+/* Wider, calmer lamp spread. Keep the cone centered on the fixed toggle. */
+.v13-cone,
+.v13-page.is-lit .v13-cone{
+  left:-560px;
+  width:1320px;
+  -webkit-mask-image:conic-gradient(from 0deg at 50% 0,transparent 0 132deg,rgba(0,0,0,.08) 140deg,rgba(0,0,0,.48) 150deg,#000 158deg 202deg,rgba(0,0,0,.48) 210deg,rgba(0,0,0,.08) 220deg,transparent 228deg 360deg);
+  mask-image:conic-gradient(from 0deg at 50% 0,transparent 0 132deg,rgba(0,0,0,.08) 140deg,rgba(0,0,0,.48) 150deg,#000 158deg 202deg,rgba(0,0,0,.48) 210deg,rgba(0,0,0,.08) 220deg,transparent 228deg 360deg);
+}
