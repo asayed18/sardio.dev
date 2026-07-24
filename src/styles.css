@@ -147,3 +147,7 @@
   .v13-about-detail p{font-size:16px}
   .v13-contact-compact .v13-contact-link strong{font-size:34px}
 }
+
+/* Let the concise sections breathe instead of reading as one block. */
+#contact{padding-top:clamp(190px,16vw,260px)}
+@media (max-width:760px){#contact{padding-top:120px}}
