@@ -67,6 +67,61 @@
   @media(max-width:980px){.v13-about-layout{grid-template-columns:1fr;gap:55px}.v13-about-details{grid-template-columns:1fr 1fr;padding-top:0}.v13-contact-layout{grid-template-columns:210px minmax(0,1fr);gap:45px}}
   @media(max-width:760px){.v13-about-details{grid-template-columns:1fr;gap:36px}.v13-about-intro p{font-size:18px}.v13-contact-layout{grid-template-columns:1fr;gap:38px}.v13-founder-portrait{width:min(250px,72vw)}.v13-contact-copy .v13-contact-grid{grid-template-columns:1fr}}
 
-.v13-contact-compact{max-width:920px}.v13-contact-compact h2{margin-bottom:24px}.v13-contact-compact>.v13-lead{margin-bottom:34px}.v13-founder-contact{display:flex;align-items:center;gap:17px;margin-bottom:18px}.v13-founder-avatar{position:relative;flex:0 0 68px;width:68px;height:68px;margin:0;overflow:hidden;border-radius:50%;background:var(--surface);box-shadow:var(--shadow-x) 10px 25px rgba(0,0,0,.16)}.v13-founder-avatar:after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px color-mix(in srgb,currentColor 7%,transparent);pointer-events:none}.v13-founder-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 29%;transform:scale(1.18);transition:opacity .9s ease}.v13-founder-avatar .portrait-light{opacity:0}.v13-page.is-lit .v13-founder-avatar .portrait-light{opacity:1}.v13-page.is-lit .v13-founder-avatar .portrait-dark{opacity:0}.v13-founder-contact span{display:block;font-size:19px;font-weight:470;letter-spacing:-.02em}.v13-founder-contact small{display:block;margin-top:5px;color:var(--pop);font-size:10px;font-weight:650;letter-spacing:.14em;text-transform:uppercase}.v13-contact-compact .v13-contact-grid{margin-left:85px}.v13-contact-compact .v13-contact-link{padding:22px 0}.v13-contact-compact .v13-contact-link strong{font-size:clamp(20px,2.4vw,32px)}
+.v13-contact-compact{max-width:1180px}.v13-contact-compact h2{margin-bottom:24px}.v13-contact-compact>.v13-lead{margin-bottom:34px}.v13-founder-contact{display:flex;align-items:center;gap:17px;margin-bottom:18px}.v13-founder-avatar{position:relative;flex:0 0 68px;width:68px;height:68px;margin:0;overflow:hidden;border-radius:50%;background:var(--surface);box-shadow:var(--shadow-x) 10px 25px rgba(0,0,0,.16)}.v13-founder-avatar:after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px color-mix(in srgb,currentColor 7%,transparent);pointer-events:none}.v13-founder-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 29%;transform:scale(1.18);transition:opacity .9s ease}.v13-founder-avatar .portrait-light{opacity:0}.v13-page.is-lit .v13-founder-avatar .portrait-light{opacity:1}.v13-page.is-lit .v13-founder-avatar .portrait-dark{opacity:0}.v13-founder-contact span{display:block;font-size:19px;font-weight:470;letter-spacing:-.02em}.v13-founder-contact small{display:block;margin-top:5px;color:var(--pop);font-size:10px;font-weight:650;letter-spacing:.14em;text-transform:uppercase}.v13-contact-compact .v13-contact-grid{margin-left:85px}.v13-contact-compact .v13-contact-link{padding:22px 0}.v13-contact-compact .v13-contact-link strong{font-size:clamp(20px,2.4vw,32px)}
   @media(max-width:760px){.v13-contact-compact .v13-contact-grid{margin-left:0}.v13-founder-avatar{flex-basis:60px;width:60px;height:60px}}
   .v13-contact-compact .v13-contact-grid{margin-left:0}.v13-contact-person{display:flex;align-items:center;gap:14px;margin-bottom:16px}.v13-contact-person .v13-founder-avatar{flex-basis:52px;width:52px;height:52px}.v13-contact-person small{margin:0}.v13-contact-person+strong{display:block}
+
+/* Compact mobile navigation */
+@media (max-width:760px){
+  .v13-site-header{height:68px;padding:14px 18px}
+  .v13-site-header .v13-nav{height:40px}
+  .v13-logo{height:40px;padding:3px 10px 3px 7px}
+  .v13-menu-button{display:block;position:absolute;top:3px;right:44px;width:34px;height:34px;padding:0;border:0;border-radius:50%;background:var(--surface);box-shadow:0 8px 22px rgba(0,0,0,.13);z-index:6}
+  .v13-menu-button span{position:absolute;left:9px;width:16px;height:1px;margin:0;transition:transform .2s ease,top .2s ease}
+  .v13-menu-button span:first-child{top:13px}
+  .v13-menu-button span:last-child{top:20px}
+  .v13-menu-button[aria-expanded="true"] span:first-child{top:17px;transform:rotate(45deg)}
+  .v13-menu-button[aria-expanded="true"] span:last-child{top:17px;transform:rotate(-45deg)}
+  .v13-menu-button:focus-visible{outline:1px solid var(--pop);outline-offset:3px}
+  .v13-theme-toggle{top:3px;right:0;width:34px;height:34px}
+  .v13-menu{display:none;left:auto;right:43px;top:47px;transform:none;width:154px;min-width:0;box-sizing:border-box;flex-direction:column;align-items:stretch;gap:0;padding:7px;border-radius:14px;background:var(--surface);box-shadow:0 16px 38px rgba(0,0,0,.2);backdrop-filter:none;overflow:hidden}
+  .is-lit .v13-menu{background:var(--surface)}
+  .v13-menu.is-open{display:flex}
+  .v13-menu a,.v13-menu a:nth-child(4),.v13-menu a:nth-child(5){display:block;width:100%;padding:11px 13px;border-radius:9px;font-size:12px;line-height:1.2}
+  .v13-menu a:hover,.v13-menu a[aria-current="page"]{background:color-mix(in srgb,var(--pop) 8%,transparent)}
+  .v13-menu a[aria-current="page"]:after{display:none}
+  .v13-hero{min-height:max(690px,calc(100svh - 68px))}
+}
+
+/* Keep the identity mark visually continuous with the page surface. */
+.v13-logo,
+.v13-page.is-lit .v13-logo{
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  backdrop-filter:none;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.12));
+}
+
+/* Keep both contact methods on matching horizontal baselines. */
+.v13-contact-compact .v13-contact-link{
+  display:grid;
+  grid-template-rows:52px auto;
+  align-content:start;
+}
+.v13-contact-compact .v13-contact-person{
+  height:52px;
+  margin:0;
+}
+.v13-contact-compact .v13-contact-link>small{
+  display:flex;
+  align-items:center;
+  height:52px;
+  margin:0;
+}
+.v13-contact-compact .v13-contact-link strong{
+  align-self:start;
+}
