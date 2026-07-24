@@ -1,0 +1,35 @@
+# SardIO landing page
+
+Static one-page website for [sardio.dev](https://sardio.dev), deployed through GitHub Pages.
+
+## Project structure
+
+```text
+src/
+  index.html       Page content and sections
+  styles.css       Layout, themes, lighting, and responsive styles
+  main.js          Theme, lamp, navigation, and relief interactions
+public/
+  assets/          Images served without processing
+  CNAME            GitHub Pages custom domain
+  robots.txt       Search crawler rules
+  sitemap.xml      Search index entry
+scripts/
+  build.mjs        Production build and validation
+dist/              Generated deployment output (not committed)
+```
+
+## Update the site
+
+- Edit copy or section structure in `src/index.html`.
+- Edit visual styling in `src/styles.css`.
+- Edit interactions in `src/main.js`.
+- Add static images to `public/assets/` and reference them as `assets/filename.ext`.
+
+## Build
+
+```bash
+pnpm run build
+```
+
+The generated GitHub Pages artifact is written to `dist/`. Pushes to `main` run the deployment workflow in `.github/workflows/deploy-pages.yml`.
