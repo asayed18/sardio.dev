@@ -149,5 +149,15 @@
 }
 
 /* Let the concise sections breathe instead of reading as one block. */
-#contact{padding-top:clamp(190px,16vw,260px)}
-@media (max-width:760px){#contact{padding-top:120px}}
+#contact{
+  min-height:calc(100svh - 86px);
+  padding-top:clamp(280px,22vw,360px);
+  padding-bottom:clamp(220px,18vw,300px);
+}
+@media (max-width:760px){
+  #contact{
+    min-height:calc(100svh - 68px);
+    padding-top:180px;
+    padding-bottom:180px;
+  }
+}
