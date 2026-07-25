@@ -6,8 +6,21 @@
   const veil = document.getElementById('v13AmbientVeil');
   const relief = document.querySelector('.v13-relief');
   const reliefGrid = document.getElementById('v13ReliefGrid');
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
   if (!page || !hero || !rig || !lamp || !veil || !relief || !reliefGrid || lamp.dataset.ready) return;
   lamp.dataset.ready = 'true';
+
+  const themeMedia = window.matchMedia('(prefers-color-scheme: light)');
+  const themeStorageKey = 'sardio-theme';
+  const readThemeMode = () => {
+    try {
+      const stored = window.localStorage.getItem(themeStorageKey);
+      return stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'system';
+    } catch {
+      return 'system';
+    }
+  };
+  let themeMode = readThemeMode();
 
   const reliefConfig = {"x":712,"y":142,"cols":13,"rows":9,"cell":56,"tiles":[[2,0,4],[7,0,8],[0,1,4],[2,1,8],[3,1,4],[7,1,16],[10,1,8],[11,1,4],[0,2,8],[1,2,4],[3,2,16],[4,2,8],[7,2,8],[8,2,4],[11,2,16],[0,3,4],[2,3,8],[3,3,16],[4,3,16],[5,3,8],[8,3,8],[10,3,4],[12,3,8],[1,4,4],[2,4,16],[4,4,8],[5,4,16],[7,4,4],[10,4,16],[11,4,8],[0,5,4],[2,5,8],[3,5,16],[6,5,8],[7,5,16],[11,5,4],[1,6,8],[3,6,4],[6,6,16],[9,6,8],[2,7,4],[5,7,8],[9,7,4],[5,8,4]]};
   const projectShadow = (height, axisX, axisY, coneStrength) => { const exposure = Math.min(1, Math.max(0, coneStrength)); const contact = height === 0 ? 0 : 1 + height * .06; const reach = height === 0 ? 0 : (2 + height * .72) * exposure; return { x: axisX * reach, y: contact + axisY * reach }; };
@@ -75,10 +88,32 @@
 
   const setLit = (lit) => {
     page.classList.toggle('is-lit', lit);
-    lamp.setAttribute('aria-checked', String(lit));
-    lamp.setAttribute('aria-label', lit ? 'Drag light control to turn off light theme' : 'Drag light control to turn on light theme');
+    themeColorMeta?.setAttribute('content', lit ? '#f7f4ee' : '#1c221f');
+    lamp.dataset.themeMode = themeMode;
+    const modeLabel = themeMode === 'system' ? `system (${lit ? 'light' : 'dark'})` : themeMode;
+    lamp.setAttribute('aria-label', `Theme: ${modeLabel}. Click to switch theme; cycle back to system sync.`);
+    lamp.title = `Theme: ${modeLabel}`;
   };
-  const toggle = () => setLit(!page.classList.contains('is-lit'));
+  const applyTheme = () => setLit(themeMode === 'system' ? themeMedia.matches : themeMode === 'light');
+  const saveThemeMode = () => {
+    try {
+      if (themeMode === 'system') window.localStorage.removeItem(themeStorageKey);
+      else window.localStorage.setItem(themeStorageKey, themeMode);
+    } catch {
+      // Private browsing may block storage; system/manual mode still works for this visit.
+    }
+  };
+  const cycleTheme = () => {
+    themeMode = themeMode === 'system' ? (themeMedia.matches ? 'dark' : 'light') : themeMode === 'light' ? 'dark' : 'system';
+    saveThemeMode();
+    applyTheme();
+  };
+  const handleSystemThemeChange = () => {
+    if (themeMode === 'system') applyTheme();
+  };
+  if (typeof themeMedia.addEventListener === 'function') themeMedia.addEventListener('change', handleSystemThemeChange);
+  else themeMedia.addListener(handleSystemThemeChange);
+  applyTheme();
 
   const updateBeamGlyphLighting = (lightX, lightY, cssAxisX, cssAxisY, sceneAxisX, sceneAxisY, coneEdge, scaleX, scaleY, isLit) => {
     const pageRect = hero.getBoundingClientRect();
@@ -209,7 +244,7 @@
       suppressClick = true;
       setTimeout(() => { suppressClick = false; }, 0);
     }
-    if (outcome.activate) toggle();
+    if (outcome.activate) cycleTheme();
     phase = Math.asin(clamp((angle - swingCenter) / swingAmplitude, -1, 1));
   };
   lamp.addEventListener('pointerup', (event) => {
@@ -226,7 +261,7 @@
       suppressClick = false;
       return;
     }
-    toggle();
+    cycleTheme();
   });
   requestAnimationFrame(render);
 })();
@@ -284,8 +319,10 @@
       return;
     }
     const email = document.getElementById('waitlistEmail')?.value.trim();
-    status.textContent = `Thank you${email ? `, ${email}` : ''}. Your interest is saved only in this page preview; connect a backend before launch.`;
-    form.reset();
+    const subject = encodeURIComponent('SardIO early access');
+    const body = encodeURIComponent(`Please add ${email} to the SardIO early access list.`);
+    status.textContent = 'Opening your email app…';
+    window.location.href = `mailto:hello@sardio.dev?subject=${subject}&body=${body}`;
   }
 
   form?.addEventListener('submit', handleWaitlistSubmit);

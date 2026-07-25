@@ -164,3 +164,48 @@
 @media (min-width:761px) and (min-height:900px){
   #contact{padding-top:clamp(380px,38vh,520px)}
 }
+
+/* Early-access capture and product signal. */
+.v13-product-teaser{
+  max-width:430px;
+  margin:17px 0 0;
+  color:var(--pop);
+  font-size:13px;
+  line-height:1.55;
+  letter-spacing:.01em;
+  opacity:.86;
+}
+.v13-waitlist-section{
+  padding-top:clamp(150px,15vw,230px);
+  padding-bottom:clamp(150px,15vw,230px);
+}
+.v13-waitlist-section .v13-form{
+  max-width:520px;
+  padding-top:34px;
+}
+.v13-field input::placeholder{color:currentColor;opacity:.42}
+.v13-form-status{max-width:430px;opacity:.76}
+.v13-footer-right{display:flex;align-items:center;justify-content:flex-end;gap:28px}
+.v13-social-links{display:flex;gap:17px;white-space:nowrap}
+.v13-social-links a{opacity:.82;text-decoration:none;transition:color .2s,opacity .2s}
+.v13-social-links a:hover{color:var(--pop);opacity:1}
+@media(max-width:760px){
+  .v13-waitlist-section{padding-top:110px;padding-bottom:120px}
+  .v13-waitlist-section .v13-form{padding-top:0}
+  .v13-footer-right{align-items:flex-start;flex-direction:column;gap:16px}
+}
+@media (min-width:761px) and (max-width:980px){
+  .v13-menu a:nth-child(4){display:block}
+}
+
+/* Lighter paper surface for light mode. Keep cone warmth, remove gray cast. */
+html:has(.v13-page.is-lit),
+body:has(.v13-page.is-lit){background:#f7f4ee}
+.v13-page.is-lit{
+  --surface:#f7f4ee;
+  --relief-shadow:#a9a193;
+  --relief-highlight:rgba(255,255,255,.96);
+  --relief-rim:rgba(72,67,58,.08);
+  color:#5d655f;
+}
+.is-lit .v13-ambient-veil{background:rgba(38,39,36,.1)}

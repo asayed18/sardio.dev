@@ -82,9 +82,9 @@
         </a>
         <button class="v13-menu-button" id="v13MenuButton" type="button" aria-expanded="false" aria-controls="v13SiteMenu" aria-label="Open navigation"><span></span><span></span></button>
         <nav class="v13-menu" id="v13SiteMenu" aria-label="Main navigation">
-          <a href="#hero" data-nav-link>Vision</a><a href="#about" data-nav-link>About</a><a href="#contact" data-nav-link>Contact</a>
+          <a href="#hero" data-nav-link>Vision</a><a href="#about" data-nav-link>About</a><a href="#waitlist" data-nav-link>Waitlist</a><a href="#contact" data-nav-link>Contact</a>
         </nav>
-        <button class="v13-theme-toggle" id="v13Lamp" type="button" role="switch" aria-checked="false" aria-label="Drag light control to turn on light theme"><svg viewBox="0 0 24 24" aria-hidden="true"><g class="theme-sun" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.5V5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8"/></g><path class="theme-moon" d="M18.3 15.2A7.3 7.3 0 0 1 8.8 5.7a7.5 7.5 0 1 0 9.5 9.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
+        <button class="v13-theme-toggle" id="v13Lamp" type="button" aria-label="Theme: system. Click to switch theme; cycle back to system sync." title="Theme: system"><svg viewBox="0 0 24 24" aria-hidden="true"><g class="theme-sun" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.5V5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8"/></g><path class="theme-moon" d="M18.3 15.2A7.3 7.3 0 0 1 8.8 5.7a7.5 7.5 0 1 0 9.5 9.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
       </div>
     </header>
 
@@ -100,9 +100,10 @@
             <span class="beam-fragment beam-neutral" data-beam-text="more useful—not more complicated." data-beam-response="1">more useful—not more complicated.</span>
           </h1>
           <div class="v13-body beam-fragment beam-block beam-neutral" data-beam-text="We build straightforward web and mobile tools powered by AI. No bloated dashboards or tech gimmicks—just software that gets real work done." data-beam-response=".72">We build straightforward web and mobile tools powered by AI. No bloated dashboards or tech gimmicks—just software that gets real work done.</div>
+          <p class="v13-product-teaser">Currently building our first tool for developer workflows.</p>
           <div class="v13-actions">
             <a class="v13-primary" href="#about">About SardIO →</a>
-            <a class="v13-secondary" href="#contact">Contact US<b>↘</b></a>
+            <a class="v13-secondary" href="#waitlist">Join the waitlist<b>↘</b></a>
           </div>
         </div>
       </section>
@@ -128,6 +129,24 @@
               </article>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="v13-section v13-waitlist-section" id="waitlist" aria-labelledby="waitlistTitle">
+        <div class="v13-section-inner v13-waitlist-layout">
+          <div>
+            <div class="v13-eyebrow">Early access</div>
+            <h2 id="waitlistTitle">Be first to try what we build.</h2>
+            <p class="v13-lead">We are keeping SardIO close to real users while the first developer-workflow tool takes shape. Leave your email and we will share a quiet update when it is ready.</p>
+          </div>
+          <form class="v13-form" id="waitlistForm" novalidate>
+            <div class="v13-field">
+              <label for="waitlistEmail">Email address</label>
+              <input id="waitlistEmail" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
+            </div>
+            <button class="v13-primary" type="submit">Join the waitlist →</button>
+            <p class="v13-form-status" id="waitlistStatus" role="status" aria-live="polite">No spam. One useful update when there is something worth sharing.</p>
+          </form>
         </div>
       </section>
 
@@ -158,7 +177,13 @@
 
     <footer class="v13-footer">
       <div><strong>sardIO</strong> · sardio.dev · © <span id="v13Year">2026</span></div>
-      <div class="v13-privacy-note">Independent AI product studio · Founded in 2026</div>
+      <div class="v13-footer-right">
+        <span class="v13-privacy-note">Independent AI product studio · Founded in 2026</span>
+        <span class="v13-social-links" aria-label="SardIO online profiles">
+          <a href="https://github.com/asayed18" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://github.com/asayed18/sardio.dev" target="_blank" rel="noreferrer">Source</a>
+        </span>
+      </div>
     </footer>
   </div>
 </div>
