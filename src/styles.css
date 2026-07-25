@@ -198,6 +198,11 @@
   .v13-menu a:nth-child(4){display:block}
 }
 
+/* Keep bright light source below, never across, theme control. */
+.v13-site-header{z-index:70}
+.v13-theme-toggle{z-index:80}
+.is-lit .v13-cone{top:18px}
+
 /* Lighter paper surface for light mode. Keep cone warmth, remove gray cast. */
 html:has(.v13-page.is-lit),
 body:has(.v13-page.is-lit){background:#f7f4ee}
@@ -209,3 +214,8 @@ body:has(.v13-page.is-lit){background:#f7f4ee}
   color:#5d655f;
 }
 .is-lit .v13-ambient-veil{background:rgba(38,39,36,.1)}
+
+/* Preserve Ahmed's face in the compact contact avatar, even away from the lamp. */
+.v13-founder-avatar img{
+  filter:brightness(1.45) contrast(.94) saturate(1.06);
+}
