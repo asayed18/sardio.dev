@@ -1,9 +1,17 @@
-import { cp, mkdir, readFile, rm } from 'node:fs/promises';
+import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const source = resolve('src/index.html');
 const outputDir = resolve('dist');
-const html = await readFile(source, 'utf8');
+let html = await readFile(source, 'utf8');
+
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION?.trim();
+if (googleSiteVerification) {
+  const metaTag = `<meta name="google-site-verification" content="${googleSiteVerification}">`;
+  if (!html.includes('name="google-site-verification"')) {
+    html = html.replace('</head>', `  ${metaTag}\n</head>`);
+  }
+}
 
 const required = [
   '<!doctype html>',
@@ -22,7 +30,21 @@ for (const marker of required) {
 await rm(outputDir, { recursive: true, force: true });
 await mkdir(outputDir, { recursive: true });
 await cp(resolve('public'), outputDir, { recursive: true });
-await cp(source, resolve(outputDir, 'index.html'));
+
+const googleHtmlVerificationFile = process.env.GOOGLE_HTML_VERIFICATION_FILE?.trim();
+const googleHtmlVerificationContent = process.env.GOOGLE_HTML_VERIFICATION_CONTENT ?? '';
+if (googleHtmlVerificationFile) {
+  if (!/^[a-zA-Z0-9._-]+\.html$/.test(googleHtmlVerificationFile)) {
+    throw new Error('GOOGLE_HTML_VERIFICATION_FILE must be a simple *.html filename');
+  }
+  await writeFile(
+    resolve(outputDir, googleHtmlVerificationFile),
+    googleHtmlVerificationContent,
+    'utf8'
+  );
+}
+
+await writeFile(resolve(outputDir, 'index.html'), html, 'utf8');
 await cp(resolve('src/styles.css'), resolve(outputDir, 'assets/styles.css'));
 await cp(resolve('src/main.js'), resolve(outputDir, 'assets/main.js'));
 

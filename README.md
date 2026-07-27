@@ -32,4 +32,23 @@ dist/              Generated deployment output (not committed)
 pnpm run build
 ```
 
+## Google Search Console verification
+
+This site is static, so the easiest verification methods are:
+
+- **Meta tag** (recommended): set `GOOGLE_SITE_VERIFICATION` when building.
+- **HTML file**: set `GOOGLE_HTML_VERIFICATION_FILE` and `GOOGLE_HTML_VERIFICATION_CONTENT` when building.
+
+Example (PowerShell):
+
+```powershell
+$env:GOOGLE_SITE_VERIFICATION="YOUR_TOKEN_HERE"
+pnpm run build
+
+# OR (HTML file method)
+$env:GOOGLE_HTML_VERIFICATION_FILE="google1234567890abcdef.html"
+$env:GOOGLE_HTML_VERIFICATION_CONTENT="google-site-verification: google1234567890abcdef.html"
+pnpm run build
+```
+
 The generated GitHub Pages artifact is written to `dist/`. Pushes to `main` run the deployment workflow in `.github/workflows/deploy-pages.yml`.
