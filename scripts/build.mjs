@@ -5,6 +5,28 @@ const source = resolve('src/index.html');
 const outputDir = resolve('dist');
 let html = await readFile(source, 'utf8');
 
+const gaMeasurementId = process.env.GA_MEASUREMENT_ID?.trim();
+if (gaMeasurementId) {
+  if (!/^G-[A-Z0-9]+$/i.test(gaMeasurementId)) {
+    throw new Error('GA_MEASUREMENT_ID must look like G-XXXXXXXX');
+  }
+
+  const gaSnippet = [
+    '  <!-- Google tag (gtag.js) -->',
+    `  <script async src="https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}"></script>`,
+    '  <script>',
+    '    window.dataLayer = window.dataLayer || [];',
+    '    function gtag(){dataLayer.push(arguments);}',
+    '    gtag(\'js\', new Date());',
+    `    gtag('config', '${gaMeasurementId}');`,
+    '  </script>'
+  ].join('\n');
+
+  if (!html.includes('googletagmanager.com/gtag/js') && !html.includes('gtag(')) {
+    html = html.replace('</head>', `${gaSnippet}\n</head>`);
+  }
+}
+
 const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION?.trim();
 if (googleSiteVerification) {
   const metaTag = `<meta name="google-site-verification" content="${googleSiteVerification}">`;

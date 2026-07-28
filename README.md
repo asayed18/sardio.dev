@@ -52,3 +52,14 @@ pnpm run build
 ```
 
 The generated GitHub Pages artifact is written to `dist/`. Pushes to `main` run the deployment workflow in `.github/workflows/deploy-pages.yml`.
+
+## Google Analytics
+
+This site can optionally inject the GA4 tag at build time via `GA_MEASUREMENT_ID`.
+
+Example (PowerShell):
+
+```powershell
+$env:GA_MEASUREMENT_ID="G-XXXXXXXXXX"
+pnpm run build
+```
