@@ -53,6 +53,10 @@ pnpm run build
 
 The generated GitHub Pages artifact is written to `dist/`. Pushes to `main` run the deployment workflow in `.github/workflows/deploy-pages.yml`.
 
+## Cache busting
+
+GitHub Pages and browsers may cache `assets/styles.css` / `assets/main.js`. The build script appends a `?v=...` query string automatically (timestamp by default). You can override it by setting `ASSET_VERSION`.
+
 ## Google Analytics
 
 This site can optionally inject the GA4 tag at build time via `GA_MEASUREMENT_ID`.

@@ -5,6 +5,11 @@ const source = resolve('src/index.html');
 const outputDir = resolve('dist');
 let html = await readFile(source, 'utf8');
 
+const buildId = (process.env.ASSET_VERSION || '').trim() || `${Date.now()}`;
+html = html
+  .replaceAll('assets/styles.css', `assets/styles.css?v=${buildId}`)
+  .replaceAll('assets/main.js', `assets/main.js?v=${buildId}`);
+
 const gaMeasurementId = process.env.GA_MEASUREMENT_ID?.trim();
 if (gaMeasurementId) {
   if (!/^G-[A-Z0-9]+$/i.test(gaMeasurementId)) {
